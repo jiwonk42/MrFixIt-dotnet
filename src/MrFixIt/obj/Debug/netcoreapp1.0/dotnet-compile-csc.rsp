@@ -214,6 +214,8 @@
 "C:\Users\epicodus\Desktop\MrFixIt-dotnet\src\MrFixIt\Controllers\WorkersController.cs"
 "C:\Users\epicodus\Desktop\MrFixIt-dotnet\src\MrFixIt\Migrations\20161206233149_Initial.cs"
 "C:\Users\epicodus\Desktop\MrFixIt-dotnet\src\MrFixIt\Migrations\20161206233149_Initial.Designer.cs"
+"C:\Users\epicodus\Desktop\MrFixIt-dotnet\src\MrFixIt\Migrations\20170505192544_MakeTableNamesPlural.cs"
+"C:\Users\epicodus\Desktop\MrFixIt-dotnet\src\MrFixIt\Migrations\20170505192544_MakeTableNamesPlural.Designer.cs"
 "C:\Users\epicodus\Desktop\MrFixIt-dotnet\src\MrFixIt\Migrations\MrFixItContextModelSnapshot.cs"
 "C:\Users\epicodus\Desktop\MrFixIt-dotnet\src\MrFixIt\Models\ApplicationUser.cs"
 "C:\Users\epicodus\Desktop\MrFixIt-dotnet\src\MrFixIt\Models\Job.cs"

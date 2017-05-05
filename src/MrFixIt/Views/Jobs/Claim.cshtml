@@ -5,15 +5,32 @@
 
 @model MrFixIt.Models.Job
 
-<h2>Would you like to do this job?</h2>
-<hr />
-@using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.JobId)
-    @Html.HiddenFor(model => model.Title)
-    @Html.HiddenFor(model => model.Description)
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#claim-btn').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("Index")',
+                success: function (result) {
+                    $('.claimed').html(result);
+                }
+            });
+        });
+    });
+</script> 
 
-    <h4>@Model.Title</h4>
-    <input type="submit" value="Claim This Job" />
-}
-<p>@Html.ActionLink("Back to list", "Index")</p>
+<div id="claim-page">
+    <h2>Would you like to do this job?</h2>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.JobId)
+        @Html.HiddenFor(model => model.Title)
+        @Html.HiddenFor(model => model.Description)
+
+        <h4>@Model.Title</h4>
+        <input id="claim-btn" type="submit" value="Claim This Job" />
+    }
+    <p>@Html.ActionLink("Back to list", "Index")</p>
+</div>
