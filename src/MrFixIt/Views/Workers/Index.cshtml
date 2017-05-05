@@ -12,7 +12,12 @@
         <h3>Your Current Jobs:</h3>
         @foreach (var listJob in Model.Jobs)
         {
+            
             <h5>@Html.DisplayFor(modelJob => listJob.Title)</h5>
+            @if (listJob.Pending == false)
+            {
+                <p class="btn">This job is not performed. @Html.ActionLink("Work on This Job", "Perform", new { id = listJob.JobId })</p>
+            }
         }
         @if (!Model.Avaliable)
         {
@@ -22,5 +27,7 @@
         {
             <p>You are already assigned to a job.</p>
         }
+
+        <div id="pending"></div>
     </div>
 }
