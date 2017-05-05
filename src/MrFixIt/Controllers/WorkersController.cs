@@ -34,11 +34,10 @@ namespace MrFixIt.Controllers
 
         // Creates a Worker profile with their First Name and Last Name
         [HttpPost]
-        public IActionResult Create(string firstName, string lastName)
+        public IActionResult Create(Worker worker)
         {
-            Worker newWorker = new Worker(FirstName: firstName, LastName: lastName);
-            newWorker.UserName = User.Identity.Name;
-            db.Workers.Add(newWorker); 
+            worker.UserName = User.Identity.Name;
+            db.Workers.Add(worker);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

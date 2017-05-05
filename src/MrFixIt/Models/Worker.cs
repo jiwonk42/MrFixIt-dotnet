@@ -23,12 +23,10 @@ namespace MrFixIt.Models
         //this comes from Identity.User
         public virtual ICollection<Job> Jobs { get; set; }
 
-        public Worker(string FirstName, string LastName)
+        public Worker()
         {
             this.Jobs = new HashSet<Job>();
             Avaliable = true;
-            this.FirstName = FirstName;
-            this.LastName = LastName;
         }
     }
 }
