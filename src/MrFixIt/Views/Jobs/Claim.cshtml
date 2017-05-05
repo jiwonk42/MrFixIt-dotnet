@@ -7,12 +7,15 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#claim-btn').click(function () {
+        $('#claim-btn').submit(function (event) {
+            event.preventDefault();
             $.ajax({
-                type: 'GET',
                 url: '@Url.Action("Index")',
+                type: 'POST',
+                dataType: 'json',
+                data: $(this).serialize(),
                 success: function (result) {
-                    $('.claimed').html(result);
+                    $('#claim-result').html(result);
                 }
             });
         });
@@ -32,5 +35,6 @@
         <h4>@Model.Title</h4>
         <input id="claim-btn" type="submit" value="Claim This Job" />
     }
+    <div id="claim-result"></div>
     <p>@Html.ActionLink("Back to list", "Index")</p>
 </div>

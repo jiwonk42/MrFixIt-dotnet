@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MrFixIt.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Dynamic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MrFixIt.Controllers
 {
@@ -36,9 +38,9 @@ namespace MrFixIt.Controllers
         // Displays a Job Details where a User claims it
         public IActionResult Claim(int id)
         {
-            var thisItem = db.Jobs.FirstOrDefault(items => items.JobId == id);
+            var thisItem = db.Jobs.Include(jobs => jobs.Worker).FirstOrDefault(items => items.JobId == id);
             return View(thisItem);
-        }
+        } 
 
         // Allows a Worker to claim the (specific) job once clicked
         [HttpPost]

@@ -2,29 +2,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Workers";
 }
-@using System.Security.Claims
-@model MrFixIt.Models.Worker
+
+@model IEnumerable<MrFixIt.Models.Job>
 
 @if (User.Identity.IsAuthenticated)
 {
-    <h4>Hello Worker @Model.FirstName @Model.LastName. You are Logged In</h4>
-    <h3>Your Current Jobs:</h3>
-    @foreach (var Job in Model.Jobs)
-    {
-        <h5>@Job.Title</h5>
 
-    }
-    @if (Model.Avaliable)
-    {
-        <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
-    }
-    else
-    {
-        <p>You are already assigned to a job.</p>
+    <div class="text-center">
+        @*<h4>Hello Worker @Html.DisplayFor(model => model.Worker.FirstName) @Html.DisplayFor(model => model.Worker.LastName). You are Logged In</h4>*@
+        <h3>Your Current Jobs:</h3>
+        @foreach (var listJob in Model)
+        {
+            <h5>@Html.DisplayFor(modelJob => listJob.Title)</h5>
+
         }
-
-}
-else
-{
-    <p>Please log into your account.</p>
+        @*@if (Model.Avaliable)
+        {
+            <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
+        }
+        else
+        {
+            <p>You are already assigned to a job.</p>
+        }*@
+    </div>
 }
