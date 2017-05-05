@@ -7,8 +7,6 @@ using MrFixIt.Models;
 using Microsoft.AspNetCore.Identity;
 using MrFixIt.ViewModels;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace MrFixIt.Controllers
 {
     public class AccountController : Controller
@@ -27,12 +25,8 @@ namespace MrFixIt.Controllers
             _signInManager = signInManager;
             _db = db;
         }
-
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
-
+        
+        // Display User's Info if logged in, stays on Index page otherwise
         public IActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
@@ -46,17 +40,20 @@ namespace MrFixIt.Controllers
             }
         }
 
-
+        // Display a page where a worker can register as a User
         public IActionResult Register()
         {
             return View();
         }
 
+        // Processes registration as a user with an Email Address as a UserName and a Password
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             var user = new ApplicationUser { UserName = model.Email };
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+            
+            // Redirects to Index page once a User has logged in, stays on Registration page otherwise
             if (result.Succeeded)
             {
                 return RedirectToAction("Index");
@@ -67,15 +64,19 @@ namespace MrFixIt.Controllers
             }
         }
 
+
+        // Displays a Login page
         public IActionResult Login()
         {
             return View();
         }
 
+        // Allows Users to login with their UserName (Email) and Password
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+            // Redirects to Index page if logged in successfully, stays on Login page otherwise
             if (result.Succeeded)
             {
                 return RedirectToAction("Index");
@@ -86,6 +87,7 @@ namespace MrFixIt.Controllers
             }
         }
 
+        // Redirects to Index page once logged off
         [HttpGet]
         public async Task<IActionResult> LogOff()
         {
