@@ -22,7 +22,7 @@ namespace MrFixIt.Controllers
             }
             else
             {
-                return RedirectToAction("Create");
+                return View();
             }
         }
 
