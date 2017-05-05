@@ -43,6 +43,22 @@ namespace MrFixIt.Controllers
             return RedirectToAction("Index");
         }
 
-        
+        // Displays a Job Details where a User claims it
+        public IActionResult Perform(int id)
+        {
+            var thisJob = db.Jobs.Include(jobs => jobs.Worker).FirstOrDefault(items => items.JobId == id);
+            return View(thisJob);
+        }
+
+        // Allows a Worker to claim the (specific) job once clicked
+        [HttpPost]
+        public IActionResult Perform(Job job)
+        {
+            job.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
+            job.Pending = true;
+            db.Entry(job).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

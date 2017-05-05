@@ -1,27 +1,27 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Claim";
+    ViewBag.Title = "Perform";
 }
 
 @model MrFixIt.Models.Job
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#claim-btn').submit(function (event) {
+        $('#perform-btn').submit(function (event) {
             event.preventDefault();
             $.ajax({
                 url: '@Url.Action("Index")',
                 type: 'POST',
                 success: function (result) {
-                    $('#claim-result').html(result);
+                    $('#perform-result').html(result);
                 }
             });
         });
     });
 </script>
 
-<div id="claim-page">
-    <h2>Would you like to do this job?</h2>
+<div id="perform-page">
+    <h2>Would you like to work on this job?</h2>
     <hr />
 
     @using (Html.BeginForm())
@@ -31,8 +31,8 @@
         @Html.HiddenFor(model => model.Description)
 
         <h4>@Model.Title</h4>
-        <input id="claim-btn" type="submit" value="Claim This Job" />
+        <input id="perform-btn" type="submit" value="Work on This Job" />
     }
-    <div id="claim-result"></div>
+    <div id="perform-result"></div>
     <p>@Html.ActionLink("Back to list", "Index")</p>
 </div>
