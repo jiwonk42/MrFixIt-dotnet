@@ -2,27 +2,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Workers";
 }
-
+@model MrFixIt.Models.Worker
 
 @if (User.Identity.IsAuthenticated)
 {
 
     <div class="text-center">
-        @*<h4>Hello Worker @Html.DisplayFor(model => model.Worker.FirstName) @Html.DisplayFor(model => model.Worker.LastName). You are Logged In</h4>*@
-        <h4 id="hello-worker"></h4>
-        @*<h3>Your Current Jobs:</h3>
-        @foreach (var listJob in Model)
+        <h4>Hello Worker. You are Logged In</h4>
+        <h3>Your Current Jobs:</h3>
+        @foreach (var listJob in Model.Jobs)
         {
             <h5>@Html.DisplayFor(modelJob => listJob.Title)</h5>
-
         }
-        @if (Model.Avaliable)
+        @if (!Model.Avaliable)
         {
-            <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
+            <h4>Please @Html.ActionLink("select a job", "Index", "Jobs").</h4>
         }
         else
         {
             <p>You are already assigned to a job.</p>
-        }*@
+        }
     </div>
 }
