@@ -6,6 +6,23 @@
 @using System.Security.Claims
 @model MrFixIt.Models.Worker
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#new-worker').submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: '@Url.Action("Create")',
+                type: 'POST',
+                dataType: 'json',
+                data: $(this).serialize(),
+                success: function (result) {
+                    var resultMessage = 'Hello, Worker: ' + worker.FirstName + ' ' + worker.LastName;
+                    $('#hello-worker').html(resultMessage);
+                }
+            });
+        });
+    });
+</script>
 
 <h2>Create</h2>
 <hr />
@@ -20,6 +37,6 @@
         @Html.TextBoxFor(model => model.LastName)
 
 
-        <input type="submit" value="Register" />
+        <input id="new-worker" type="submit" value="Register" />
     }
 }

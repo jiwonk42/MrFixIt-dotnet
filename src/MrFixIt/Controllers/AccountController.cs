@@ -29,15 +29,7 @@ namespace MrFixIt.Controllers
         // Display User's Info if logged in, stays on Index page otherwise
         public IActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                var thisWorker = db.Workers.FirstOrDefault(item => item.UserName == User.Identity.Name);
-                return View(thisWorker);
-            }
-            else
-            {
-                return View();
-            }
+            return View();
         }
 
         // Display a page where a worker can register as a User

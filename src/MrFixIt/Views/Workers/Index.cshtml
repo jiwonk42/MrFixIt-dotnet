@@ -3,20 +3,20 @@
     ViewBag.Title = "Workers";
 }
 
-@model IEnumerable<MrFixIt.Models.Job>
 
 @if (User.Identity.IsAuthenticated)
 {
 
     <div class="text-center">
         @*<h4>Hello Worker @Html.DisplayFor(model => model.Worker.FirstName) @Html.DisplayFor(model => model.Worker.LastName). You are Logged In</h4>*@
-        <h3>Your Current Jobs:</h3>
+        <h4 id="hello-worker"></h4>
+        @*<h3>Your Current Jobs:</h3>
         @foreach (var listJob in Model)
         {
             <h5>@Html.DisplayFor(modelJob => listJob.Title)</h5>
 
         }
-        @*@if (Model.Avaliable)
+        @if (Model.Avaliable)
         {
             <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
         }

@@ -12,15 +12,13 @@
             $.ajax({
                 url: '@Url.Action("Index")',
                 type: 'POST',
-                dataType: 'json',
-                data: $(this).serialize(),
                 success: function (result) {
                     $('#claim-result').html(result);
                 }
             });
         });
     });
-</script> 
+</script>
 
 <div id="claim-page">
     <h2>Would you like to do this job?</h2>
