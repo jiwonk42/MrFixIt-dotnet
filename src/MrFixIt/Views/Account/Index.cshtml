@@ -7,15 +7,23 @@
 
 <h2>Mr. Fix-It</h2>
 <hr />
-@if (User.Identity.IsAuthenticated)
-{
-    <h4>Hello @User.Identity.Name!</h4>
+<div id="account-page">
+    <img id="account-page-image" style="width:100%; height: 100%" src="~/img/mrFixIt.jpeg" alt="a photo of a person and a laptop">
+</div>
+<br />
+<div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h4>Hello @User.Identity.Name!</h4>
 
-} else
-{
-    <p>@Html.ActionLink("Register", "Register")</p>
-    <p>@Html.ActionLink("Log in", "Login")</p>
-}
+    }
+    else
+    {
+        <h4>@Html.ActionLink("Register", "Register")</h4>
+        <h4>@Html.ActionLink("Log in", "Login")</h4>
+    }
+</div>
+
 
 
 
