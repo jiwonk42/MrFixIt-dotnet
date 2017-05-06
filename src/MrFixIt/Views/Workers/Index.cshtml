@@ -22,7 +22,7 @@
                 <p>Thank you for completing this Job!</p>
             }
 
-            @if (listJob.Pending == false)
+            @if (listJob.Pending == false && listJob.Completed == false)
             {
                 <p class="btn">This job is not performed. @Html.ActionLink("Work on This Job", "Perform", new { id = listJob.JobId })</p>
             }
@@ -33,7 +33,7 @@
                     <p class="btn">Completed? @Html.ActionLink("Yes", "Complete", new { id = listJob.JobId })</p>
                 }
             }
-
+            <hr />
         }
 
         @if (!Model.Avaliable)
