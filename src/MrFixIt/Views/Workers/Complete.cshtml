@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Complete";
+}
+
+@model MrFixIt.Models.Job
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#complete-btn').submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: '@Url.Action("Index")',
+                type: 'POST',
+                success: function (result) {
+
+                    $('#complete-result').html(result);
+                }
+            });
+        });
+    });
+</script>
+
+<div id="complete-page">
+    <h2>Did you complete this job?</h2>
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.JobId)
+        @Html.HiddenFor(model => model.Title)
+        @Html.HiddenFor(model => model.Description)
+
+        <h4>@Model.Title</h4>
+        <input id="complete-btn" type="submit" value="Complete" />
+    }
+    <div id="complete-result"></div>
+    <p>@Html.ActionLink("Back to list", "Index")</p>
+</div>

@@ -43,19 +43,37 @@ namespace MrFixIt.Controllers
             return RedirectToAction("Index");
         }
 
-        // Displays a Job Details where a User claims it
+        // Displays a Job Details where a User clicks a link to indicate "on the job" status
         public IActionResult Perform(int id)
         {
             var thisJob = db.Jobs.Include(jobs => jobs.Worker).FirstOrDefault(items => items.JobId == id);
             return View(thisJob);
         }
 
-        // Allows a Worker to claim the (specific) job once clicked
+        // Allows a Worker to choose the job to work on
         [HttpPost]
         public IActionResult Perform(Job job)
         {
             job.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
             job.Pending = true;
+            db.Entry(job).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // Displays a Job Details where a User clicks a link to indicate "Completed" status
+        public IActionResult Complete(int id)
+        {
+            var thisJob = db.Jobs.Include(jobs => jobs.Worker).FirstOrDefault(items => items.JobId == id);
+            return View(thisJob);
+        }
+
+        // Allows a Worker to indicate that the job has been completed
+        [HttpPost]
+        public IActionResult Complete(Job job)
+        {
+            job.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
+            job.Completed = true;
             db.Entry(job).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");

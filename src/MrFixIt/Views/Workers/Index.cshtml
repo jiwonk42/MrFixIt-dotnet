@@ -13,6 +13,14 @@
         @foreach (var listJob in Model.Jobs)
         {
             <h5>@Html.DisplayFor(modelJob => listJob.Title)</h5>
+            <p id="complete-result"></p>
+
+             
+            @if(listJob.Completed == true)
+            {
+
+                <p>Thank you for completing this Job!</p>
+            }
 
             @if (listJob.Pending == false)
             {
@@ -20,10 +28,12 @@
             }
             else
             {
-                <p class="btn">Create a Complete Button</p>
-
+                @if (listJob.Completed == false)
+                {
+                    <p class="btn">Completed? @Html.ActionLink("Yes", "Complete", new { id = listJob.JobId })</p>
+                }
             }
- 
+
         }
 
         @if (!Model.Avaliable)
