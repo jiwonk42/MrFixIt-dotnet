@@ -10,7 +10,7 @@
         $('#claim-btn').submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url: '@Url.Action("Index")',
+                url: '@Url.Action("Claim")',
                 type: 'POST',
                 success: function (result) {
                     $('#claim-result').html(result);

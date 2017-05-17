@@ -10,7 +10,7 @@
         $('#perform-btn').submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url: '@Url.Action("Index")',
+                url: '@Url.Action("Perform")',
                 type: 'POST',
                 success: function (result) {
                     $('#perform-result').html(result);

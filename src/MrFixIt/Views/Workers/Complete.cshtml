@@ -10,7 +10,7 @@
         $('#complete-btn').submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url: '@Url.Action("Index")',
+                url: '@Url.Action("Complete")',
                 type: 'POST',
                 success: function (result) {
 
